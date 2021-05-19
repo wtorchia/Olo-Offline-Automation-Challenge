@@ -12,9 +12,8 @@ public class CommentTest extends BaseTest {
 	
 	
 	@Test
-	public void test_Get_Comment() throws Exception {
+	public void test_Get_Comment_Success() throws Exception {
 		
-		//https://jsonplaceholder.typicode.com/comments?postId={postId}
 		
 		String json = readUrl(BASE_URL + COMMENTS_BASE + "?"  + COMMENT_ID + 1);
 		
@@ -27,9 +26,6 @@ public class CommentTest extends BaseTest {
 	    assert(commentsArray.length == 5);
 	 
 	    //validate the comments
-	    
-	    
-	    
 	    
 	    if(debug) {
 	    
@@ -127,6 +123,24 @@ public class CommentTest extends BaseTest {
 	    assert(commentsArray[4].body.contains("voluptates magni quo et"));
 	    	    
 	}
+	
+	
+	@Test
+	public void test_Get_Comment_Fail() throws Exception {
+
+		//Test API only has 100 items. 
+		String json = readUrl(BASE_URL + COMMENTS_BASE + "?"  + COMMENT_ID + 9999);
+		
+		Gson gson = new Gson();  
+		    
+	    Comments[] commentsArray = gson.fromJson(json, Comments[].class);
+	    
+	    //Should be empty
+	    assert(commentsArray.length == 0);
+
+		
+	}
+	
 	
 	
 }
