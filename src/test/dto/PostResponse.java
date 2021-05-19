@@ -6,6 +6,12 @@ package test.dto;
  */
 public class PostResponse{
 
-	  public int  id;
+	 public int id;
+	 
+	 public String title;
+	 
+	 public String body;
+	 
+	 public int userId;
 	
 }
