@@ -18,15 +18,37 @@ public class PostsTest_Post extends BaseTest {
 	    
 	    Posts post = new Posts();
 	    
-	    post.userId = 1;
+	    int userId = 1;
 	    
-	    post.body = "TEST BODY";
+	    String body = "TEST BODY";
 	    
-	    post.title = "TEST TITTLE";
+	    String title = "TEST TITTLE";
+	    
+	    
+	    post.userId = userId;
+	    
+	    post.body = body;
+	    
+	    post.title = title;
 	    
 	    PostResponse response = gson.fromJson(postJSONToURL(url, gson.toJson(post)), PostResponse.class);
 	    
+	    if(debug) {
+	    
+		    System.out.println("ID : " + response.id);
+		    System.out.println("Title : " + response.title);
+		    System.out.println("Body : " + response.body);
+		    System.out.println("UserID : " + response.userId);
+		    
+	    }
+	    
 	    checkIntValue(response.id, 101);
+	    
+	    checkIntValue(response.userId, userId);
+	    
+	    checkTextPresent(response.title, title);
+	    
+	    checkTextPresent(response.body, body);
 		
 	}
 	

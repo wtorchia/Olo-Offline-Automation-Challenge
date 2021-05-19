@@ -12,7 +12,7 @@ public class CommentTest_Post extends BaseTest {
 	@Test
 	public void test_Get_Posts_Count() throws Exception {
 		
-		String url = BASE_URL + POSTS_BASE;
+		String url = BASE_URL + POSTS_BASE + "1/" +  COMMENTS_BASE;
 		
 	    Gson gson = new Gson();  
 	    
