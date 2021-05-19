@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 import test.dto.Posts;
 
-public class PostsTest extends BaseTest {
+public class PostsTest_Get extends BaseTest {
 
 	@Test
 	public void test_Get_Posts_Count() throws Exception {

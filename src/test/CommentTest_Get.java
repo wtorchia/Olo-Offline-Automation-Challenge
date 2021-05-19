@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import test.dto.Comments;
 import test.dto.Posts;
 
-public class CommentTest extends BaseTest {
+public class CommentTest_Get extends BaseTest {
 
 	
 	

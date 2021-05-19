@@ -3,7 +3,11 @@ package test;
 import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -69,6 +73,70 @@ public class BaseTest {
 			}
 	            
 	    }
+	}
+	
+	
+	//Takes in the URL and JSON data as a string to be posted. Returns JSON response as a string.  
+	protected String postJSONToURL(String destinationURL, String json) throws IOException {
+		
+		if(debug) System.out.println("Connecting to URL destinationURL");
+		
+		URL url = new URL (destinationURL);
+		
+		HttpURLConnection httpConnection = (HttpURLConnection)url.openConnection();
+		
+		httpConnection.setRequestMethod("POST");
+		
+		httpConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+		
+		httpConnection.setRequestProperty("Accept", "application/json");
+		
+		httpConnection.setDoOutput(true);
+		
+	    try {
+		
+	    	if(debug) System.out.println("Posting data : " + json);
+	    	
+			OutputStream os = httpConnection.getOutputStream() ;
+			
+		    byte[] input = json.getBytes("utf-8");
+			
+			os.write(input, 0, input.length);			
+	    }
+	    catch(Exception e) {
+	    	
+	    	fail("Could not get output stream to  URL : " + destinationURL );
+	    	
+	    	
+	    	return null;
+	    }
+	    
+		
+		try{
+			
+			if(debug) System.out.println("Reading response");
+			
+			BufferedReader br = new BufferedReader( new InputStreamReader(httpConnection.getInputStream(), "utf-8"));
+			
+			StringBuilder response = new StringBuilder();
+		    
+			String responseLine = null;
+		    
+			while ((responseLine = br.readLine()) != null) {
+			
+				response.append(responseLine.trim());
+		     
+			}
+			
+			return (response.toString());
+				    
+		} catch(Exception e) {
+	    	
+	    	fail("Could not get get a reponse from URL : " + destinationURL );
+	    	
+	    	return null;
+	    }
+	  
 	}
 	
 	

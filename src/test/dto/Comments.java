@@ -2,7 +2,7 @@ package test.dto;
 
 
 /*
- * GSON class for posts
+ * GSON class for Comments
  */
 public class Comments{
 	
