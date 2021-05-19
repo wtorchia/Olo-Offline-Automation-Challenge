@@ -4,23 +4,21 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import org.junit.jupiter.api.Test;
-import com.google.gson.Gson;
-
-import test.dto.Posts; 
-
 
 /*
  * Base class for all tests
- * Contains constatants and utils for testing. 
+ * Contains constants and utils for testing. 
  */
 public class BaseTest {
 	
 	static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
 	
-	static final String POSTS_BASE = "posts";
+	static final String POSTS_BASE = "posts/";
 	
+	static final String COMMENTS_BASE = "comments";
 	
+	static final String COMMENT_ID = "postId=";
+		
 	//Set true to see debug outputs.
 	protected boolean debug = false;
 	
@@ -30,7 +28,7 @@ public class BaseTest {
 	}
 
 	
-	//Reads URL and restuns the JSON serialized into a string. 
+	//Reads URL and returns the JSON serialized into a string. 
 	public String readUrl(String urlString) throws Exception {
 
 		BufferedReader reader = null;
@@ -72,8 +70,4 @@ public class BaseTest {
 	    }
 	}
 	
-
-	
-
-
 }
