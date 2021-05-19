@@ -1,5 +1,7 @@
 package test;
 
+import static org.junit.Assert.fail;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -22,14 +24,13 @@ public class BaseTest {
 	//Set true to see debug outputs.
 	protected boolean debug = false;
 	
-	
 	public BaseTest(){
 		
 	}
 
 	
 	//Reads URL and returns the JSON serialized into a string. 
-	public String readUrl(String urlString) throws Exception {
+	protected String readUrl(String urlString) throws Exception {
 
 		BufferedReader reader = null;
 	    
@@ -68,6 +69,44 @@ public class BaseTest {
 			}
 	            
 	    }
+	}
+	
+	
+	protected void checkIntValue(int expected, int value) {
+		
+		if (debug) System.out.println("Checking if int " + expected + " equals : " + value);
+		
+		try {
+			
+			
+			assert(expected == value);
+			
+		}
+		catch (AssertionError e) {
+			
+			fail("Expected : " + expected + " got : " + value );
+			
+		}
+		
+	}
+	
+	
+	protected void checkTextPresent(String full, String value) {
+		
+		if (debug) System.out.println("Checking if text " + full + " contains : " + value);
+		
+		try {
+			
+			
+			assert(full.contains(value));
+			
+		}
+		catch (AssertionError e) {
+			
+			fail("Expected : " + value + " in  : " + full );
+			
+		}
+		
 	}
 	
 }

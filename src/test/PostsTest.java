@@ -18,7 +18,7 @@ public class PostsTest extends BaseTest {
 	    Posts[] postsArray = gson.fromJson(json, Posts[].class);
 
 	    //100 results will always come back. Real API would have a variable number
-	    assert(postsArray.length == 100);
+	    checkIntValue(postsArray.length , 100);
 		
 	}
 	
@@ -43,17 +43,17 @@ public class PostsTest extends BaseTest {
 		    
 	    }
 	    
-	    assert(postsArray[0].userId == 1);
+	    checkIntValue(postsArray[0].userId , 1);
 	    
-	    assert(postsArray[0].id == 1);
+	    checkIntValue(postsArray[0].id , 1);
 	    
-	    assert(postsArray[0].title.equals("sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
+	    checkTextPresent(postsArray[0].title, "sunt aut facere repellat provident occaecati excepturi optio reprehenderit");
 	    
 	    //Return chars are causing parsing issues. Checking for each line in the whole string.
-	    assert(postsArray[0].body.contains("quia et suscipit"));
-	    assert(postsArray[0].body.contains("suscipit recusandae consequuntur expedita et cum"));
-	    assert(postsArray[0].body.contains("reprehenderit molestiae ut ut quas totam"));
-	    assert(postsArray[0].body.contains("nostrum rerum est autem sunt rem eveniet architecto"));
+	    checkTextPresent(postsArray[0].body, "quia et suscipit");
+	    checkTextPresent(postsArray[0].body, "suscipit recusandae consequuntur expedita et cum");
+	    checkTextPresent(postsArray[0].body, "reprehenderit molestiae ut ut quas totam");
+	    checkTextPresent(postsArray[0].body, "nostrum rerum est autem sunt rem eveniet architecto");
 	    
 	}
 	
@@ -76,17 +76,17 @@ public class PostsTest extends BaseTest {
 		    
 	    }
 	    
-	    assert(postsArray[99].userId == 10);
+	    checkIntValue(postsArray[99].userId, 10);
 	    
-	    assert(postsArray[99].id == 100);
+	    checkIntValue(postsArray[99].id, 100);
 	    
-	    assert(postsArray[99].title.equals("at nam consequatur ea labore ea harum"));
+	    checkTextPresent(postsArray[99].title, "at nam consequatur ea labore ea harum");
 	    
 	    //Return chars are causing parsing issues. Checking for each line in the whole string.
-	    assert(postsArray[99].body.contains("cupiditate quo est a modi nesciunt soluta"));
-	    assert(postsArray[99].body.contains("ipsa voluptas error itaque dicta in"));
-	    assert(postsArray[99].body.contains("autem qui minus magnam et distinctio eum"));
-	    assert(postsArray[99].body.contains("accusamus ratione error aut"));
+	    checkTextPresent(postsArray[99].body, "cupiditate quo est a modi nesciunt soluta");
+	    checkTextPresent(postsArray[99].body, "ipsa voluptas error itaque dicta in");
+	    checkTextPresent(postsArray[99].body, "autem qui minus magnam et distinctio eum");
+	    checkTextPresent(postsArray[99].body, "accusamus ratione error aut");
 	    		
 	 
 	    
